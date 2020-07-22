@@ -8,7 +8,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "concurrently 'nodemon server.js' 'cd ../client && npm start'",
+    "dev": "concurrently 'nodemon server.js' 'cd ../battleship-client && npm start'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
