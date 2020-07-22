@@ -36,7 +36,7 @@ mongoose.connection.once('open', () => {
 });
 
 // CORS config
-const whitelist = [local.clientUrl, deployment.url];
+const whitelist = [local.clientURL, deployment.url];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin)) {
