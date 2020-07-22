@@ -1,6 +1,6 @@
 // Dependencies
 const express = require('express');
-const MyModel = require('../models/myModel.js');
+const MyModel = require('../models/user.js');
 
 // Configuration
 const myRouter = express.Router();
