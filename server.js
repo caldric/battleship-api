@@ -15,7 +15,7 @@ const local = {
 const deployment = {
   port: process.env.PORT,
   mongoURI: process.env.MONGODB_URI,
-  url: 'https://gentle-temple-22561.herokuapp.com',
+  url: 'https://salty-brook-60152.herokuapp.com/',
 };
 const index = 'index';
 const app = express();
