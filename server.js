@@ -10,6 +10,7 @@ const myController = require('./controllers/myController.js');
 const local = {
   port: 8080,
   mongoURI: 'mongodb://localhost:27017/data',
+  clientURL: 'http://localhost:3000',
 };
 const deployment = {
   port: process.env.PORT,
@@ -35,7 +36,7 @@ mongoose.connection.once('open', () => {
 });
 
 // CORS config
-const whitelist = [`http://localhost:${local.port}`, deployment.url];
+const whitelist = [local.clientUrl, deployment.url];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin)) {
