@@ -2,4 +2,3 @@
 
 Template for deployment of server on Heroku
 
-Likitha Duggirala
