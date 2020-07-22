@@ -8,6 +8,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "dev": "concurrently 'nodemon server.js' 'cd ../battleship-client && npm start'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -20,6 +21,7 @@
     "mongoose": "^5.9.25"
   },
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
