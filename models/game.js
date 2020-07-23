@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 // Schema
 const gameSchema = new mongoose.Schema({
-  gameID: { type: String, required: true, unique: true },
-  userID: { type: String, required: true, unique: true },
+  userID1: { type: String, required: true, unique: true },
+  userID2: { type: String, required: false, unique: true },
   carrier: { type: Number, default: 5, min: [0, 'Invalid number'] },
   battleship: { type: Number, default: 4, min: [0, 'Invalid number'] },
   cruiser: { type: Number, default: 3, min: [0, 'Invalid number'] },

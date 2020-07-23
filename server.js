@@ -9,7 +9,7 @@ const myController = require('./controllers/myController.js');
 // Configuration
 const local = {
   port: 8080,
-  mongoURI: 'mongodb://localhost:27017/data',
+  mongoURI: 'mongodb://localhost:27017/battleship',
   clientURL: 'http://localhost:3000',
 };
 const deployment = {
