@@ -1,13 +1,13 @@
 // Dependencies
 const express = require('express');
-const MyModel = require('../models/myModel.js');
+const User = require('../models/user.js');
 
 // Configuration
 const myRouter = express.Router();
 
 // INDEX ROUTE
 myRouter.get('/', async (req, res) => {
-  const query = await MyModel.find({}).catch((err) =>
+  const query = await User.find({}).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
@@ -15,7 +15,7 @@ myRouter.get('/', async (req, res) => {
 
 // CREATE ROUTE
 myRouter.post('/', async (req, res) => {
-  const query = await MyModel.create(req.body).catch((err) =>
+  const query = await User.create(req.body).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
@@ -23,7 +23,7 @@ myRouter.post('/', async (req, res) => {
 
 // UPDATE ROUTE
 myRouter.put('/:id', async (req, res) => {
-  const query = await MyModel.findByIdAndUpdate(req.params.id, req.body, {
+  const query = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   }).catch((err) => res.status(400).json({ error: err.message }));
   res.status(200).json(query);
@@ -31,7 +31,7 @@ myRouter.put('/:id', async (req, res) => {
 
 // DELETE ROUTE
 myRouter.delete('/:id', async (req, res) => {
-  const query = await MyModel.findByIdAndRemove(req.params.id).catch((err) =>
+  const query = await User.findByIdAndRemove(req.params.id).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
