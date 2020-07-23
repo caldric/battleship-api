@@ -17,7 +17,7 @@ const deployment = {
   mongoURI: process.env.MONGODB_URI,
   url: 'https://separate-client.herokuapp.com',
 };
-const index = 'index';
+const index = 'battleship';
 const app = express();
 const PORT = deployment.port || local.port;
 const MONGODB_URI = deployment.mongoURI || local.mongoURI;
@@ -48,7 +48,7 @@ const corsOptions = {
 };
 
 // Middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 
 // Controllers
