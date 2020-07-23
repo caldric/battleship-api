@@ -69,28 +69,22 @@ myRouter.put('/:id', async (req, res) => {
 /**************************************************************
 ****************** UPDATE ROUTE (game attack) *****************
 
-curl -X PUT -H "Content-Type: application/json" -d '{"carrier":6}' http://localhost:8080/battleship/5f19da7d5b135d7ac7772b95/A10
+curl -X PUT -H "Content-Type: application/json" -d '{"userID2":"5f19f67d183313098fb0b60b"}' http://localhost:8080/battleship/5f19da7d5b135d7ac7772b95/A10
+curl -X PUT -H "Content-Type: application/json" -d '{"carrier":3}' http://localhost:8080/battleship/5f19da7d5b135d7ac7772b95/A10
 **************************************************************/
 myRouter.put('/:gameID/:target', async (req, res) => {
-  console.log(`req.body`, req.body);
-  res.status(200).json(req.params.gameID);
-  const query = await Game.findByIdAndUpdate(
-    req.params.gameID,
-    req.body
-  ).catch((err) => res.status(400).json({ error: err.message }));
-  const data = await query.json();
+  const targetCol = req.params.target.slice(0, 1);
+  const targetRow = req.params.target.slice(1);
 
-  res.status(200).json(data);
+  req.body.userBoard1 = { [targetCol]: { [targetRow]: 'hello' } };
+  req.body.destroyer = 71;
 
-  // const query = await Game.findByIdAndUpdate(req.params.gameID, req.body, {
-  //   new: true,
-  // })
-  //   .then((err, updatedGame) => {
-  //     console.log(`updatedGame`, updatedGame);
-  //     return;
-  //   })
-  //   .catch((err) => res.status(400).json({ error: err.message }));
-  // res.status(200).json(query);
+  const query = await Game.findByIdAndUpdate(req.params.gameID, req.body, {
+    new: true,
+  }).catch((err) => res.status(400).json({ error: err.message }));
+
+  res.status(200).json({ col: targetCol, row: targetRow, query: query });
+  res.status(200).json(query);
 });
 
 /**************************************************************
