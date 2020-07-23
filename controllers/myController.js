@@ -75,11 +75,15 @@ curl -X PUT -H "Content-Type: application/json" -d '{"carrier":3}' http://localh
 myRouter.put('/:gameID/:target', async (req, res) => {
   const targetCol = req.params.target.slice(0, 1);
   const targetRow = req.params.target.slice(1);
+  const objTarget = `userBoard2.${targetCol}.${targetRow}`;
 
+  const update = {
+    [objTarget]: 'hello',
+  };
   req.body.userBoard1 = { [targetCol]: { [targetRow]: 'hello' } };
   req.body.destroyer = 71;
 
-  const query = await Game.findByIdAndUpdate(req.params.gameID, req.body, {
+  const query = await Game.findByIdAndUpdate(req.params.gameID, update, {
     new: true,
   }).catch((err) => res.status(400).json({ error: err.message }));
 
