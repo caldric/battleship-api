@@ -21,9 +21,17 @@ myRouter.post('/', async (req, res) => {
   res.status(200).json(query);
 });
 
-// UPDATE ROUTE
+// UPDATE ROUTE (user profile)
 myRouter.put('/:id', async (req, res) => {
   const query = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  }).catch((err) => res.status(400).json({ error: err.message }));
+  res.status(200).json(query);
+});
+
+// UPDATE ROUTE (in game attack)
+myRouter.put('/:userID/:target', async (req, res) => {
+  const query = await User.findByIdAndUpdate(req.params.userID, req.body, {
     new: true,
   }).catch((err) => res.status(400).json({ error: err.message }));
   res.status(200).json(query);

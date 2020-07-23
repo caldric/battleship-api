@@ -8,8 +8,6 @@ const userSchema = new mongoose.Schema({
   totalGames: { type: Number, default: 0, min: [0, 'Invalid number'] },
   wins: { type: Number, default: 0, min: [0, 'Invalid number'] },
   inGame: { type: Boolean, default: false },
-  yourBoard: [[{ type: String }]],
-  enemyBoard: [[{ type: String }]],
 });
 
 // Model export
