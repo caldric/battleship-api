@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // Schema
-const Ships = new mongoose.Schema({
+const shipsSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   carrier: { type: Number, default: 5, min: [0, 'Invalid number'] },
   battleship: { type: Number, default: 4, min: [0, 'Invalid number'] },
@@ -12,4 +12,4 @@ const Ships = new mongoose.Schema({
 });
 
 // Model export
-module.exports = mongoose.model('MyModel', Ships);
+module.exports = mongoose.model('Ships', shipsSchema);
