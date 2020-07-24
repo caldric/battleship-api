@@ -8,6 +8,7 @@ const session = require('express-session');
 // Controllers
 const myController = require('./controllers/myController.js');
 const signupController = require('./controllers/signup.js');
+const loginController = require('./controllers/login.js');
 
 // Configuration
 const local = {
@@ -64,6 +65,7 @@ app.use(
 // Controllers
 app.use(`/${index}`, myController);
 app.use('/signup', signupController);
+app.use('/login', loginController);
 
 // Listener
 app.listen(PORT, () => {
