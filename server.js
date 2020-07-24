@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 // Controllers
 const myController = require('./controllers/myController.js');
+const signupController = require('./controllers/signup.js');
 
 // Configuration
 const local = {
@@ -53,6 +54,7 @@ app.use(express.json());
 
 // Controllers
 app.use(`/${index}`, myController);
+app.use('/signup', signupController);
 
 // Listener
 app.listen(PORT, () => {
