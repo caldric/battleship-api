@@ -5,9 +5,10 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: false },
   password: { type: String, required: false }, //not required because of anonymous users
+  currentGameID: { type: String },
+  enemyID: { type: mongoose.ObjectId },
   totalGames: { type: Number, default: 0, min: [0, 'Invalid number'] },
   wins: { type: Number, default: 0, min: [0, 'Invalid number'] },
-  inGame: { type: Boolean, default: false },
   carrier: { type: Number, default: 5, min: [0, 'Invalid number'] },
   battleship: { type: Number, default: 4, min: [0, 'Invalid number'] },
   cruiser: { type: Number, default: 3, min: [0, 'Invalid number'] },

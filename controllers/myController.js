@@ -1,7 +1,6 @@
 // Dependencies
 const express = require('express');
 const User = require('../models/user.js');
-const Game = require('../models/game.js');
 
 // Configuration
 const myRouter = express.Router();
@@ -13,18 +12,6 @@ curl http://localhost:8080/battleship/allusers
 **************************************************************/
 myRouter.get('/allusers', async (req, res) => {
   const query = await User.find({}).catch((err) =>
-    res.status(400).json({ error: err.message })
-  );
-  res.status(200).json(query);
-});
-
-/**************************************************************
-************************* INDEX ROUTE ************************
-
-curl http://localhost:8080/battleship/allgames
-**************************************************************/
-myRouter.get('/allgames', async (req, res) => {
-  const query = await Game.find({}).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
@@ -48,7 +35,7 @@ myRouter.post('/create/user', async (req, res) => {
 curl -X POST -H "Content-Type: application/json" -d '{"userID1":"5f19d95b6766db795448d1fb"}' http://localhost:8080/battleship/create/game
 **************************************************************/
 myRouter.post('/create/game', async (req, res) => {
-  const query = await Game.create(req.body).catch((err) =>
+  const query = await User.create(req.body).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
@@ -75,17 +62,21 @@ curl -X PUT -H "Content-Type: application/json" -d '{"carrier":3}' http://localh
 myRouter.put('/:gameID/:target', async (req, res) => {
   const targetCol = req.params.target.slice(0, 1);
   const targetRow = req.params.target.slice(1);
-  const objTarget = `userBoard2.${targetCol}.${targetRow}`;
+  const objTarget = `enemyBoard.${targetCol}.${targetRow}`;
 
   const update = {
-    [objTarget]: 'hello',
+    [objTarget]: 'attack',
   };
-  req.body.userBoard1 = { [targetCol]: { [targetRow]: 'hello' } };
-  req.body.destroyer = 71;
 
-  const query = await Game.findByIdAndUpdate(req.params.gameID, update, {
+  const options = {
     new: true,
-  }).catch((err) => res.status(400).json({ error: err.message }));
+  };
+
+  const query = await User.findByIdAndUpdate(
+    req.params.gameID,
+    update,
+    options
+  ).catch((err) => res.status(400).json({ error: err.message }));
 
   res.status(200).json({ col: targetCol, row: targetRow, query: query });
   res.status(200).json(query);
