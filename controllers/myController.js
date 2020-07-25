@@ -5,6 +5,14 @@ const User = require('../models/user.js');
 // Configuration
 const myRouter = express.Router();
 
+// Index route for a specific game
+myRouter.get('/games/:id', async (req, res) => {
+  const query = await Game.findById(req.params.id).catch((err) =>
+    res.status(400).json({ error: err.message })
+  );
+  res.status(200).json(query);
+});
+
 /**************************************************************
 ************************* INDEX ROUTE ************************
 
