@@ -1,5 +1,6 @@
 // Dependencies
 const express = require('express');
+const Game = require('../models/game.js');
 const User = require('../models/user.js');
 
 // Configuration
@@ -36,7 +37,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"enemyID":"5f1a4be8eeefb53
 **************************************************************/
 // CHECK
 myRouter.post('/create/game', async (req, res) => {
-  const query = await User.create(req.body).catch((err) =>
+  const query = await Game.create(req.body).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
