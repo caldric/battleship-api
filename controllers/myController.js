@@ -22,6 +22,13 @@ myRouter
       new: true,
     }).catch((err) => res.status(400).json({ error: err.message }));
     res.status(200).json(query);
+  })
+  // Delete route
+  .delete(async (req, res) => {
+    const query = await User.findByIdAndRemove(req.params.id).catch((err) =>
+      res.status(400).json({ error: err.message })
+    );
+    res.status(200).json(query);
   });
 
 /**************************************************************
@@ -56,18 +63,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"enemyID":"5f1a4be8eeefb53
 // CHECK
 myRouter.post('/create/game', async (req, res) => {
   const query = await Game.create(req.body).catch((err) =>
-    res.status(400).json({ error: err.message })
-  );
-  res.status(200).json(query);
-});
-
-/**************************************************************
-************************* DELETE ROUTE ************************
-
-curl -X DELETE http://localhost:8080/battleship/5f1a445e54c6e0343996b7b0
-**************************************************************/
-myRouter.delete('/:id', async (req, res) => {
-  const query = await User.findByIdAndRemove(req.params.id).catch((err) =>
     res.status(400).json({ error: err.message })
   );
   res.status(200).json(query);
