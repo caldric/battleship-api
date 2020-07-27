@@ -19,7 +19,7 @@ const local = {
 const deployment = {
   port: process.env.PORT,
   mongoURI: process.env.MONGODB_URI,
-  url: 'https://separate-client.herokuapp.com',
+  url: 'https://playbattleship.herokuapp.com',
 };
 const index = 'battleship';
 const app = express();
