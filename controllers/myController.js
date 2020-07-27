@@ -25,7 +25,7 @@ myRouter
   })
   // Delete route
   .delete(async (req, res) => {
-    const query = await User.findByIdAndRemove(req.params.id).catch((err) =>
+    const query = await Game.findByIdAndRemove(req.params.id).catch((err) =>
       res.status(400).json({ error: err.message })
     );
     res.status(200).json(query);
