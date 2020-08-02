@@ -35,8 +35,9 @@ const boardSchema = new mongoose.Schema(
 );
 
 const gameSchema = new mongoose.Schema({
-  board1: { type: boardSchema, default: {} },
-  board2: { type: boardSchema, default: {} },
+  enemyBoardVisible: { type: boardSchema, default: {} },
+  enemyBoardState: { type: boardSchema, default: {} },
+  userBoard: { type: boardSchema, default: {} },
 });
 
 // Model export
