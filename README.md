@@ -1,5 +1,3 @@
-# Node.js API Template
+# Battleship API
 
-Template for deployment of server on Heroku
-
-Likitha trying to set git!
+The API repository of the [Battleship front end](https://github.com/caldric/battleship-client).
